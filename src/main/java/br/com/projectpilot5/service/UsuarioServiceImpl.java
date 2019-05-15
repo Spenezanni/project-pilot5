@@ -1,5 +1,7 @@
 package br.com.projectpilot5.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,25 +17,21 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public void salvarUsuario(Usuario usuario) {
-
 		System.out.println("--------------" + usuario.toString());
-
 		usuarioRepository.save(usuario);
 	}
 
 	@Override
 	public void verificacaoIdUsuarioExiste(long id) {
-	Usuario usuario = usuarioRepository.findOne(id);
-			if(usuario == null){
-				throw new ResourceNotFoundException("Id de Tarefa não existe");
-			}
+		Usuario usuario = usuarioRepository.findOne(id);
+		if (usuario == null) {
+			throw new ResourceNotFoundException("Id de Tarefa não existe");
 		}
+	}
 
 	@Override
 	public void deletar(long id) {
-		
 		usuarioRepository.delete(id);
-
 	}
 
 
