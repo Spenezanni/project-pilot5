@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 
 import br.com.projectpilot5.entity.Usuario;
 
-
-
 public interface UsuarioService {
 
 	void salvarUsuario(Usuario usuario);
@@ -16,8 +14,6 @@ public interface UsuarioService {
 
 	void deletar(long id);
 
-
-	
-
+	public List<Usuario> listar();
 
 }

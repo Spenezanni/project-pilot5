@@ -2,6 +2,7 @@ package br.com.projectpilot5.service;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@Override
 	public void salvarUsuario(Usuario usuario) {
@@ -34,5 +38,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 		usuarioRepository.delete(id);
 	}
 
+	@Override
+	public List<Usuario> listar() {
+
+		return (List<Usuario>) usuarioRepository.findAll();
+	}
 
 }

@@ -22,18 +22,42 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 
+	/*
+	 * @PostMapping(value = "/usuario")
+	 * 
+	 * @ResponseBody public void salvarUsuario(@RequestBody UsuarioDTO
+	 * usuarioDTO) { Usuario usuario = new Usuario();
+	 * usuario.setLogin(usuarioDTO.getLogin());
+	 * usuario.setSenha(usuarioDTO.getSenha());
+	 * usuarioService.salvarUsuario(usuario); }
+	 */
+
 	@PostMapping(value = "/usuario")
 	@ResponseBody
 	public void salvarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
 		Usuario usuario = new Usuario();
 		usuario.setLogin(usuarioDTO.getLogin());
 		usuario.setSenha(usuarioDTO.getSenha());
+		
 		usuarioService.salvarUsuario(usuario);
 	}
 
+	/*
+	 * @PutMapping(value = "/usuario/{id}")
+	 * 
+	 * @ResponseBody public String modificausuario(@PathVariable long
+	 * id, @RequestBody UsuarioDTO usuarioDTO) { Usuario usuario = new
+	 * Usuario(); usuario.setId(id); usuario.setLogin(usuarioDTO.getLogin());
+	 * usuario.setSenha(usuarioDTO.getSenha());
+	 * usuarioService.verificacaoIdUsuarioExiste(id);
+	 * usuarioService.salvarUsuario(usuario); return
+	 * "Usuario Modificado com sucesso!!!";
+	 * 
+	 * }
+	 */
 	@PutMapping(value = "/usuario/{id}")
 	@ResponseBody
-	public String modificausuario(@PathVariable long id, @RequestBody UsuarioDTO usuarioDTO) {
+	public String modificadorusuario(@PathVariable long id, @RequestBody UsuarioDTO usuarioDTO) {
 		Usuario usuario = new Usuario();
 		usuario.setId(id);
 		usuario.setLogin(usuarioDTO.getLogin());
@@ -41,17 +65,33 @@ public class UsuarioController {
 		usuarioService.verificacaoIdUsuarioExiste(id);
 		usuarioService.salvarUsuario(usuario);
 		return "Usuario Modificado com sucesso!!!";
-
 	}
 
+	/*
+	 * @DeleteMapping(value = "/usuario/{id}")
+	 * 
+	 * @ResponseBody public String deletar(@PathVariable long id) {
+	 * usuarioService.verificacaoIdUsuarioExiste(id);
+	 * usuarioService.deletar(id); return "Usuario Deletado"; }
+	 */
 	@DeleteMapping(value = "/usuario/{id}")
 	@ResponseBody
 	public String deletar(@PathVariable long id) {
-		usuarioService.verificacaoIdUsuarioExiste(id);
 		usuarioService.deletar(id);
 		return "Usuario Deletado";
 	}
-	
 
+	/*
+	 * @GetMapping(value = "/usuario")
+	 * 
+	 * @ResponseBody public List<Usuario> listar(){ return
+	 * usuarioService.listar(); }
+	 */
+
+	@GetMapping(value = "/usuario")
+	@ResponseBody
+	public List<Usuario> listar() {
+		return usuarioService.listar();
+	}
 
 }
